@@ -1,0 +1,33 @@
+endpoint:
+  global: /api/v1/
+  deposit-withdraw: wallet
+  get-balance: wallets/{wallets_uuid}
+
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: JavaCodeApplication
+
+  data:
+    r2dbc:
+      repositories:
+        enabled: true
+
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/postgres
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+
+  liquibase:
+      url: ${POSTGRES_HOST}
+      password: ${POSTGRES_PASSWORD}
+      user: ${POSTGRES_USER}
+      enabled: true
+      change-log: classpath:/db/changelog/db.changelog-master.yaml
+      default-schema: public
+
+
+
+server:
+  port: 8081

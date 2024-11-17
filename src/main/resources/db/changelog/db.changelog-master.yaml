@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0
+      author: Arsen Azaryan
+
+  - include:
+      file: v-1.0/db.changelog-v.1.yaml
+      relativeToChangelogFile: true
+
+  - changeSet:
+      id: 2
+      author: Arsen Azaryan
+      changes:
+        - tagDatabase:
+            tag: table_created
+
+  - include:
+      file: v-2.0/db.changelog-v.2.yaml
+      relativeToChangelogFile: true
+
+  - changeSet:
+      id: 4
+      author: Arsen Azaryan
+      changes:
+        - tagDatabase:
+            tag: insert_date_table
