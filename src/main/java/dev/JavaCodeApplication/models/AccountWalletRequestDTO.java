@@ -1,6 +1,5 @@
 package dev.JavaCodeApplication.models;
 
-import dev.JavaCodeApplication.entity.enums.OperationType;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -11,15 +10,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class AccountWalletRequestDTO {
-    //@NotNull(message = "walletId cannot be null")
+
     @NotEmpty(message = "не может быть пустым поле")
-    @Size(min = 36,max = 36, message = "Не верный формат ID")
+    @Size(min = 36, max = 36, message = "Не верный формат ID")
     private String walletId;
     @NotNull(message = "Operation type cannot be null")
     @Size(min = 7, max = 8, message = "Operation type must be between 7 and 8 characters")
