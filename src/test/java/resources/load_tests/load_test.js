@@ -7,11 +7,11 @@ export const options = {
 };
 
 export default function () {
-    const url = 'http://host.docker.internal:8081/api/v1/wallet';
+    const url = 'http://host.docker.internal:8080/api/v1/wallet';
 
     const walletId = "43fe0cf8-c985-4db7-b578-92f5c338d200";
     const operationType = "DEPOSIT";
-    const amount = "10";
+    const amount = "1";
 
     const payload = JSON.stringify({
         walletId: walletId,

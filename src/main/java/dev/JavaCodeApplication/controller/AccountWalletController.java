@@ -1,12 +1,10 @@
 package dev.JavaCodeApplication.controller;
 
 import dev.JavaCodeApplication.entity.AccountWallet;
-import dev.JavaCodeApplication.entity.enums.OperationType;
 import dev.JavaCodeApplication.exeptions.service_wallet_exceptinons.WalletNotFoundException;
 import dev.JavaCodeApplication.models.AccountWalletRequestDTO;
 import dev.JavaCodeApplication.repository.AccountWalletRepository;
 import dev.JavaCodeApplication.service.IWalletService;
-
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -36,13 +34,11 @@ public class AccountWalletController {
         this.walletService = walletService;
     }
 
-    @PostMapping(value = "${endpoint.deposit-withdraw}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<ResponseEntity<String>> withdrawAndDeposit( @Valid @RequestBody AccountWalletRequestDTO accountWalletDTO) {
-       AccountWallet accountWallet = new AccountWallet(UUID.fromString(accountWalletDTO.getWalletId()),
-          OperationType.valueOf( accountWalletDTO.getOperationType()),accountWalletDTO.getAmount() );
+    @PostMapping(value = "${endpoint.deposit-withdraw}")
+    public Mono<ResponseEntity<String>> withdrawAndDeposit(
+        @Valid @RequestBody AccountWalletRequestDTO accountWalletDto) {
 
-
-        return  walletService.handleTransactionRequest(accountWallet)
+        return walletService.handleTransactionRequest(accountWalletDto)
             .onErrorResume(e -> Mono.just(ResponseEntity.badRequest().body(e.getMessage())))
             .switchIfEmpty(Mono.error(new WalletNotFoundException("Кошелек не найден")));
 

@@ -1,5 +1,6 @@
 package dev.JavaCodeApplication.models;
 
+import dev.JavaCodeApplication.entity.enums.OperationType;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -10,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor

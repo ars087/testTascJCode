@@ -2,6 +2,8 @@ package dev.JavaCodeApplication.entity;
 
 
 import dev.JavaCodeApplication.entity.enums.OperationType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Version;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -24,14 +26,11 @@ import java.util.UUID;
 public class AccountWallet {
     @Id
     // @GeneratedValue(strategy = GenerationType.UUID)
-    @Column("wallet_id")
+     @Column("wallet_id")
     private UUID walletId;
-    @Column("operation_type")
-    @NotNull(message = "Operation type cannot be null")
-    @Size(min = 7, max = 8, message = "Operation type must be between 7 and 8 characters")
-    @Pattern(regexp = "^(DEPOSIT|WITHDRAW)$", message = "Operation type must be either 'DEPOSIT' or 'WITHDRAW'")
-    private OperationType operationType;
-    @NotNull(message = "Amount cannot be null")
+    @Column("amount")
     @DecimalMin(value = "0.0", inclusive = false, message = "Amount must be greater than zero")
     private BigDecimal amount;
+//    @Version
+//    private Long version;
 }

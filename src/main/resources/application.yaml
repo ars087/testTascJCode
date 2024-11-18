@@ -14,20 +14,18 @@ spring:
       repositories:
         enabled: true
 
-  r2dbc:
-    url: r2dbc:postgresql://localhost:5432/postgres
-    username: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
-
   liquibase:
-      url: ${POSTGRES_HOST}
-      password: ${POSTGRES_PASSWORD}
-      user: ${POSTGRES_USER}
-      enabled: true
-      change-log: classpath:/db/changelog/db.changelog-master.yaml
-      default-schema: public
+    enabled: true
+    url: jdbc:postgresql://localhost:5432/postgres
+    password: 123456
+    user: root
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+    default-schema: public
 
-
+  r2dbc:
+    url: r2dbc:pool:postgresql://localhost:5432/postgres
+    username: root
+    password: 123456
 
 server:
-  port: 8081
+  port: 8080
